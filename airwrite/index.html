@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AIRWRITE — Write Without Touching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="grid"></div>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="brand-mark">✦</span><span>AIRWRITE</span><small>v1.0</small></a>
+    <div class="top-status"><span class="dot"></span><span id="headerStatus">SYSTEM READY</span></div>
+    <div class="top-actions"><button class="icon-btn" id="demoBtn" title="Magic demo">◉</button><button class="icon-btn" id="themeBtn" title="Toggle glow">☼</button></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="eyebrow">WEBCAM · HAND TRACKING · AIR INK</div>
+      <h1>Write without<br><span>touching.</span></h1>
+      <p>Turn your index finger into a virtual pen. Draw in the air, control the canvas with gestures, and export your work.</p>
+      <div class="hero-buttons"><button class="primary" id="startBtn">Start Air Writing <span>→</span></button><button class="secondary" id="howBtn">How it works <span>?</span></button></div>
+      <div class="hero-meta"><span>Designed & built for</span><strong>U. RUSHANDRA REDDY</strong></div>
+    </section>
+
+    <section class="workspace" id="workspace">
+      <div class="camera-card panel">
+        <div class="panel-head"><div><span class="live-dot"></span><strong>LIVE AIR CANVAS</strong><small id="cameraState">Camera idle</small></div><div class="head-actions"><button class="tiny" id="mirrorBtn">Mirror</button><button class="tiny" id="fullscreenBtn">Fullscreen</button></div></div>
+        <div class="camera-stage" id="stage">
+          <video id="video" playsinline muted></video>
+          <canvas id="paint"></canvas><canvas id="landmarks"></canvas>
+          <div class="zone"><span>WRITING ZONE</span></div>
+          <div class="stage-hint" id="stageHint"><b id="hintTitle">Camera is off</b><span id="hintSub">Click Enable Camera to start</span><button class="camera-start" id="cameraStartBtn">Enable Camera <span>↗</span></button><small class="camera-note">Safari: click Allow when the camera permission appears.</small></div>
+          <div class="tracking-pill" id="trackingPill"><span></span>HAND NOT DETECTED</div>
+        </div>
+        <div class="toolbar">
+          <button id="undoBtn">↶ <span>Undo</span></button><button id="redoBtn">↷ <span>Redo</span></button><button id="clearBtn">⌫ <span>Clear</span></button><span class="toolbar-divider"></span><button class="style active" data-style="neon">Neon</button><button class="style" data-style="laser">Laser</button><button class="style" data-style="ink">Ink</button><button class="style" data-style="galaxy">Galaxy</button><div class="spacer"></div><button id="penBtn">⚙ Pen</button></div>
+      </div>
+
+      <aside class="side-stack">
+        <div class="panel recognized">
+          <div class="panel-title"><span>RECOGNIZED TEXT</span><button id="copyBtn">Copy</button></div>
+          <div class="recognized-text" id="recognizedText">Start writing…<span class="caret"></span></div>
+          <div class="text-tools"><button id="speakBtn">▶ Speak</button><button id="txtBtn">↓ TXT</button><button id="pngBtn">↓ PNG</button></div>
+        </div>
+        <div class="mini-grid"><div class="metric panel"><span>CONFIDENCE</span><b id="confidence">—</b><small>trajectory quality</small></div><div class="metric panel"><span>WPM</span><b id="wpm">0</b><small>writing speed</small></div></div>
+        <div class="panel gestures"><div class="panel-title"><span>GESTURE CONTROL</span><span class="live-label">LIVE</span></div><div class="gesture-row"><span class="hand-icon">☝</span><div><b>Index extended</b><small>Write</small></div></div><div class="gesture-row"><span class="hand-icon">✋</span><div><b>Open palm</b><small>Stop writing</small></div></div><div class="gesture-row"><span class="hand-icon">✊</span><div><b>Fist</b><small>Clear canvas</small></div></div><div class="gesture-row"><span class="hand-icon">👍</span><div><b>Thumb up</b><small>Add space</small></div></div><div class="gesture-row"><span class="hand-icon">✌</span><div><b>Two fingers</b><small>New line</small></div></div></div>
+      </aside>
+    </section>
+
+    <section class="feature-strip"><div><span>01</span><b>TRACK</b><small>21 hand landmarks</small></div><div><span>02</span><b>DRAW</b><small>Low-latency air ink</small></div><div><span>03</span><b>CONTROL</b><small>Gesture commands</small></div><div><span>04</span><b>RECOGNIZE</b><small>Letters, words & symbols</small></div><div><span>05</span><b>EXPORT</b><small>Text, PNG, TXT</small></div></section>
+
+    <section class="modules"><div class="section-kicker">MORE TO EXPLORE</div><h2>One canvas.<br><span>Many modes.</span></h2><div class="module-grid">
+      <article class="module"><span class="module-number">01</span><div class="module-icon">✎</div><h3>Pen Studio</h3><p>Switch ink styles, glow, thickness and trail length.</p><button data-scroll="#workspace">Open studio →</button></article>
+      <article class="module"><span class="module-number">02</span><div class="module-icon">◇</div><h3>Draw & Shapes</h3><p>Use air strokes for sketches, arrows and diagrams.</p><button data-demo="shapes">Try demo →</button></article>
+      <article class="module"><span class="module-number">03</span><div class="module-icon">∑</div><h3>Math Mode</h3><p>A future-ready workspace for equations and symbols.</p><button data-demo="math">Preview →</button></article>
+      <article class="module"><span class="module-number">04</span><div class="module-icon">◌</div><h3>Practice Lab</h3><p>Train your hand with timed letters and accuracy scoring.</p><button data-demo="practice">Start practice →</button></article>
+    </div></section>
+
+    <section class="demo-band"><div><span class="eyebrow">MAGIC DEMO MODE</span><h2>See the idea<br>in <span>motion.</span></h2></div><button class="primary" id="magicBtn">Launch Magic Demo ✦</button></section>
+  </main>
+  <footer><span>© 2026 AIRWRITE</span><span>Designed & built by <b>U. RUSHANDRA REDDY</b></span><span>Write. Move. Create.</span></footer>
+
+  <div class="modal" id="modal"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><span class="eyebrow">HOW IT WORKS</span><h2>Your hand becomes the interface.</h2><p>Allow webcam access, hold your hand inside the writing zone, and extend your index finger. AIRWRITE tracks your hand landmarks in the browser and renders a smooth virtual-ink trail.</p><div class="steps"><div><b>01</b><span>Allow camera</span></div><div><b>02</b><span>Extend index</span></div><div><b>03</b><span>Write in air</span></div></div><p class="note">AIRWRITE now includes browser-side OCR for clear block-style letters, words, names and common symbols. For best results, write large, separated characters inside the writing zone and press Recognize.</p></div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

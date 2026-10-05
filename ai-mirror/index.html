@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Mirror — See What the Model Sees</title>
+  <meta name="description" content="A browser-based AI vision explainer with real-time object detection, attention visualization and annotated image export.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><span></span><span></span><span></span></div>
+      <div>
+        <strong>AI MIRROR</strong>
+        <small>SEE WHAT THE MODEL SEES</small>
+      </div>
+    </div>
+    <div class="status-pill"><i></i><span id="modelStatus">Loading vision model</span></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MODEL EXPLAINER / COMPUTER VISION</p>
+        <h1>See the image<br><em>through AI eyes.</em></h1>
+        <p class="hero-copy">Drop an image into the mirror and inspect what a browser-based vision model detects, where it focuses, and how confidently it sees each region.</p>
+      </div>
+      <div class="hero-chip">
+        <span>LIVE INFERENCE</span>
+        <b id="inferenceTime">— ms</b>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="mirror-card" id="mirrorCard">
+        <div class="mirror-grid"></div>
+        <div class="scanline" id="scanline"></div>
+        <div class="viewer" id="viewer">
+          <div class="empty-state" id="emptyState">
+            <div class="drop-icon">⌁</div>
+            <h2>Drop an image into the mirror</h2>
+            <p>or choose a file from your device</p>
+            <button class="primary-btn" id="chooseBtn">Choose image</button>
+            <span class="file-note">JPG · PNG · WEBP · max 15 MB</span>
+          </div>
+          <img id="sourceImage" alt="Uploaded image preview">
+          <canvas id="overlayCanvas"></canvas>
+          <div class="focus-ring" id="focusRing"></div>
+          <div class="mirror-reflection"></div>
+        </div>
+        <div class="viewer-footer">
+          <span><b class="live-dot"></b> VISION LAYER ACTIVE</span>
+          <span id="imageMeta">No image loaded</span>
+        </div>
+      </div>
+
+      <aside class="insights">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">INTERPRETATION</p>
+            <h2>Model readout</h2>
+          </div>
+          <span class="ai-orb">AI</span>
+        </div>
+
+        <div class="prediction" id="predictionCard">
+          <div class="prediction-top">
+            <span>PRIMARY PREDICTION</span>
+            <span id="predictionScore">—</span>
+          </div>
+          <div class="prediction-name" id="predictionName">Waiting for an image</div>
+          <div class="confidence-track"><span id="confidenceBar"></span></div>
+          <div class="prediction-foot"><span>confidence</span><strong id="confidenceText">—</strong></div>
+        </div>
+
+        <div class="metric-list">
+          <div class="metric">
+            <div class="metric-head"><span>Attention strength</span><b id="attentionValue">—</b></div>
+            <div class="mini-track"><i id="attentionBar"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-head"><span>Visual similarity</span><b id="similarityValue">—</b></div>
+            <div class="mini-track"><i id="similarityBar"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-head"><span>Region focus</span><b id="regionValue">—</b></div>
+            <div class="mini-track"><i id="regionBar"></i></div>
+          </div>
+        </div>
+
+        <div class="regions">
+          <div class="section-label">DETECTED REGIONS <span id="regionCount">0</span></div>
+          <div id="regionList" class="region-list">
+            <div class="empty-list">No detections yet.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="secondary-btn" id="downloadBtn" disabled>↓ Download annotated PNG</button>
+          <button class="ghost-btn" id="resetBtn">Reset mirror</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="drop-zone" id="dropZone">
+      <div>
+        <span class="drop-kicker">INPUT</span>
+        <h3>Drag & drop an image anywhere here</h3>
+        <p>The model runs locally in your browser after the vision model loads.</p>
+      </div>
+      <div class="drop-arrow">↗</div>
+    </section>
+
+    <section class="tech-strip">
+      <div><span>MODEL</span><strong>COCO-SSD</strong></div>
+      <div><span>RUNTIME</span><strong>TensorFlow.js</strong></div>
+      <div><span>PRIVACY</span><strong>Local inference</strong></div>
+      <div><span>EXPORT</span><strong>Canvas PNG</strong></div>
+    </section>
+  </main>
+
+  <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" hidden>
+
+  <footer>
+    <span>AI MIRROR / HACKATHON BUILD</span>
+    <span>Object detection is performed client-side.</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
