@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PROJECT UNIVERSE — Interactive Project Showcase</title>
+<meta name="description" content="A cinematic interactive showcase of four intelligent web projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="noise"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+<div class="stars" id="stars"></div>
+
+<header class="nav">
+  <a class="brand" href="#">
+    <span class="brand-symbol"><i></i><i></i><i></i></span>
+    <span><b>PROJECT</b><em>UNIVERSE</em></span>
+  </a>
+  <div class="nav-center"><span class="pulse"></span> FOUR EXPERIENCES · ONE COLLECTION</div>
+  <button class="about-btn" id="aboutBtn">ABOUT <span>↗</span></button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow"><span></span> SELECT AN EXPERIENCE</div>
+    <h1>Ideas that<br><i>come alive.</i></h1>
+    <p>A cinematic gateway to four interactive projects — built to explore AI, vision, productivity and learning through beautifully crafted experiences.</p>
+    <div class="hero-actions">
+      <button class="explore-btn" id="exploreBtn">EXPLORE COLLECTION <span>↓</span></button>
+      <div class="mini-stat"><strong>04</strong><span>LIVE<br>PROJECTS</span></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="halo"></div>
+    <div class="core"><span>04</span><small>EXPERIENCES</small></div>
+    <div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div>
+    <div class="floating-tag t1">AI / VISION</div><div class="floating-tag t2">GESTURE / OCR</div><div class="floating-tag t3">LEARNING / DATA</div>
+  </div>
+</section>
+
+<section class="collection" id="collection">
+  <div class="section-head reveal">
+    <div><span class="eyebrow"><span></span> THE COLLECTION</span><h2>Choose your <i>experience.</i></h2></div>
+    <p>Hover to explore. Click any project to enter its world.</p>
+  </div>
+  <div class="grid">
+    <article class="project-card card-a reveal" data-project="ai-mirror" data-index="01">
+      <div class="card-art"><div class="art-grid"></div><div class="art-orb"></div><div class="art-eye">◎</div><div class="scan"></div><span class="art-code">VISION_01</span></div>
+      <div class="card-content"><div class="card-top"><span>01 / AI VISION</span><b>↗</b></div><h3>AI <i>Mirror</i></h3><p>See what the model sees.</p><div class="card-meta"><span>OBJECT DETECTION</span><span>REAL-TIME</span></div></div>
+    </article>
+    <article class="project-card card-b reveal" data-project="attendx" data-index="02">
+      <div class="card-art"><div class="bar-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="data-orb"></div><span class="art-code">DATA_02</span></div>
+      <div class="card-content"><div class="card-top"><span>02 / INTELLIGENCE</span><b>↗</b></div><h3>Attend<i>X</i></h3><p>Attendance, understood.</p><div class="card-meta"><span>ANALYTICS</span><span>SIMULATOR</span></div></div>
+    </article>
+    <article class="project-card card-c reveal" data-project="airwrite" data-index="03">
+      <div class="card-art"><div class="gesture-line">AIR<span>→</span>INK</div><div class="finger-dot"></div><div class="trail"></div><span class="art-code">GESTURE_03</span></div>
+      <div class="card-content"><div class="card-top"><span>03 / GESTURE AI</span><b>↗</b></div><h3>Air<i>Write</i></h3><p>Write without touching.</p><div class="card-meta"><span>HAND TRACKING</span><span>OCR</span></div></div>
+    </article>
+    <article class="project-card card-d reveal" data-project="learnos" data-index="04">
+      <div class="card-art"><div class="galaxy"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="orbit"></div><span class="art-code">LEARNING_04</span></div>
+      <div class="card-content"><div class="card-top"><span>04 / LEARNING OS</span><b>↗</b></div><h3>Learn<i>OS</i></h3><p>Your learning, in motion.</p><div class="card-meta"><span>PROGRESS</span><span>KNOWLEDGE MAP</span></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="manifesto reveal">
+  <div class="manifesto-line"></div>
+  <p>FOUR PROJECTS. FOUR WORLDS.</p>
+  <h2>Built to be <i>experienced.</i></h2>
+</section>
+</main>
+
+<footer><span>PROJECT UNIVERSE © 2026</span><span>DESIGNED FOR DISCOVERY <b>✦</b></span></footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-window">
+    <div class="modal-head">
+      <div><span id="modalNumber">01</span><strong id="modalTitle">AI MIRROR</strong><small id="modalSubtitle"></small></div>
+      <div class="modal-actions"><button id="launchBtn">OPEN FULL PROJECT ↗</button><button class="close" id="closeBtn">×</button></div>
+    </div>
+    <div class="preview"><div class="loader" id="loader"><span></span><p>ENTERING EXPERIENCE…</p></div><iframe id="projectFrame" title="Project preview"></iframe></div>
+  </div>
+</div>
+
+<div class="about" id="about">
+  <div class="about-box">
+    <button class="close about-close" id="aboutClose">×</button>
+    <span class="eyebrow"><span></span> PROJECT UNIVERSE</span>
+    <h2>One doorway.<br><i>Four ideas.</i></h2>
+    <p>This landing experience is a cinematic launcher for four independent projects. Every card opens the original project without merging or changing its internal code.</p>
+    <div class="about-grid"><div><b>04</b><span>PROJECTS</span></div><div><b>01</b><span>COLLECTION</span></div><div><b>∞</b><span>POSSIBILITIES</span></div></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

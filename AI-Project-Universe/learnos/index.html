@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEARNOS — Learning Progress OS</title>
+  <meta name="description" content="A premium personal learning progress dashboard." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div id="toast-container"></div>
+
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">L</span><span>LEARNOS</span></div>
+    <div class="profile-mini"><div class="avatar">R</div><div><strong>Rushandra</strong><small>Learning OS</small></div></div>
+    <nav id="main-nav">
+      <button class="nav-item active" data-view="dashboard">⌂ <span>Overview</span></button>
+      <button class="nav-item" data-view="subjects">◈ <span>My Subjects</span></button>
+      <button class="nav-item" data-view="journey">✦ <span>Learning Journey</span></button>
+      <button class="nav-item" data-view="knowledge">⌘ <span>Knowledge Map</span></button>
+      <button class="nav-item" data-view="analytics">◒ <span>Analytics</span></button>
+      <button class="nav-item" data-view="goals">◎ <span>Goals</span></button>
+      <button class="nav-item" data-view="achievements">♛ <span>Achievements</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="nav-item" data-view="profile">◯ <span>Profile</span></button>
+      <button class="nav-item" id="theme-toggle">☾ <span>Theme</span></button>
+    </div>
+  </aside>
+
+  <main class="app">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobile-menu">☰</button>
+      <div class="crumb">LEARNOS <span>/</span> <b id="view-label">Overview</b></div>
+      <div class="top-actions">
+        <button class="icon-btn" id="search-open" title="Search (⌘ K)">⌕</button>
+        <button class="icon-btn notification-btn" id="notifications-open" title="Notifications">♢<i></i></button>
+        <button class="user-chip"><span class="avatar small">R</span> Rushandra</button>
+      </div>
+    </header>
+
+    <section id="view-dashboard" class="view active">
+      <div class="hero">
+        <div><div class="eyebrow">YOUR LEARNING JOURNEY</div><h1>Good evening, Rushandra <span>✦</span></h1><p>See exactly how far you've come — and what to learn next.</p></div>
+        <button class="primary" id="log-time-hero">＋ Log learning</button>
+      </div>
+      <div class="stats-grid" id="stats-grid"></div>
+
+      <div class="grid-2 hero-grid">
+        <section class="panel journey-panel">
+          <div class="panel-head"><div><span class="eyebrow">MASTER MAP</span><h2>Learning Galaxy</h2></div><button class="ghost" data-nav="journey">Explore →</button></div>
+          <div class="galaxy" id="galaxy"></div>
+          <div class="legend"><span><i class="dot mastered"></i> Mastered</span><span><i class="dot learning"></i> Learning</span><span><i class="dot weak"></i> Needs practice</span><span><i class="dot locked"></i> Locked</span></div>
+        </section>
+        <section class="panel recommendation">
+          <div class="panel-head"><div><span class="eyebrow">NEXT BEST STEP</span><h2>What should I learn next?</h2></div><span class="spark">✦</span></div>
+          <div id="recommendation-card"></div>
+        </section>
+      </div>
+
+      <div class="grid-3">
+        <section class="panel">
+          <div class="panel-head"><div><span class="eyebrow">CONTINUE</span><h2>Pick up where you left off</h2></div></div>
+          <div id="continue-card"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><span class="eyebrow">ATTENTION</span><h2>Weak areas</h2></div><button class="ghost" data-nav="analytics">View all</button></div>
+          <div id="weak-list"></div>
+        </section>
+        <section class="panel streak-panel">
+          <div class="panel-head"><div><span class="eyebrow">CONSISTENCY</span><h2>Your streak</h2></div><span class="fire">🔥</span></div>
+          <div class="streak-big" id="streak-big"></div>
+          <div class="week" id="week"></div>
+          <small id="longest-streak"></small>
+        </section>
+      </div>
+
+      <div class="grid-2">
+        <section class="panel">
+          <div class="panel-head"><div><span class="eyebrow">THIS WEEK</span><h2>Learning hours</h2></div><div class="segmented" id="time-range"><button class="active">Week</button><button>Month</button><button>Semester</button></div></div>
+          <div class="bar-chart" id="hours-chart"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><div><span class="eyebrow">MILESTONES</span><h2>Recent achievements</h2></div><button class="ghost" data-nav="achievements">See all</button></div>
+          <div id="recent-achievements"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="view-subjects" class="view">
+      <div class="page-title"><div><div class="eyebrow">YOUR CURRICULUM</div><h1>My Subjects</h1><p>Track every subject from first concept to mastery.</p></div><button class="primary" id="add-subject">＋ Add subject</button></div>
+      <div class="subject-grid" id="subject-grid"></div>
+    </section>
+
+    <section id="view-journey" class="view">
+      <div class="page-title"><div><div class="eyebrow">ROADMAP</div><h1>Learning Journey</h1><p>Follow your progression through connected concepts.</p></div><select class="select" id="journey-subject"></select></div>
+      <section class="panel journey-map-panel"><div id="journey-map"></div></section>
+    </section>
+
+    <section id="view-knowledge" class="view">
+      <div class="page-title"><div><div class="eyebrow">CONCEPT GRAPH</div><h1>Knowledge Map</h1><p>See how topics unlock one another.</p></div><button class="ghost" id="reset-map">Reset view</button></div>
+      <section class="panel knowledge-panel"><div class="knowledge-canvas" id="knowledge-canvas"></div><div class="node-details" id="node-details"></div></section>
+    </section>
+
+    <section id="view-analytics" class="view">
+      <div class="page-title"><div><div class="eyebrow">INSIGHTS</div><h1>Analytics</h1><p>Turn your activity into actionable learning decisions.</p></div></div>
+      <div class="grid-2">
+        <section class="panel"><div class="panel-head"><div><span class="eyebrow">MASTERY</span><h2>Skill radar</h2></div></div><div class="radar-wrap"><canvas id="radar" width="480" height="360"></canvas></div></section>
+        <section class="panel"><div class="panel-head"><div><span class="eyebrow">TREND</span><h2>Progress over time</h2></div></div><div class="line-wrap"><canvas id="progress-line" width="650" height="350"></canvas></div></section>
+      </div>
+      <div class="grid-2">
+        <section class="panel"><div class="panel-head"><div><span class="eyebrow">FOCUS</span><h2>Areas that need attention</h2></div></div><div id="weak-detail"></div></section>
+        <section class="panel"><div class="panel-head"><div><span class="eyebrow">QUIZZES</span><h2>Quiz performance</h2></div></div><div id="quiz-performance"></div></section>
+      </div>
+    </section>
+
+    <section id="view-goals" class="view">
+      <div class="page-title"><div><div class="eyebrow">DIRECTION</div><h1>My Goals</h1><p>Make progress visible, measurable, and time-bound.</p></div><button class="primary" id="add-goal">＋ New goal</button></div>
+      <div class="goal-grid" id="goal-grid"></div>
+    </section>
+
+    <section id="view-achievements" class="view">
+      <div class="page-title"><div><div class="eyebrow">MILESTONES</div><h1>Achievements</h1><p>Small wins compound into mastery.</p></div></div>
+      <div class="achievement-grid" id="achievement-grid"></div>
+    </section>
+
+    <section id="view-profile" class="view">
+      <div class="page-title"><div><div class="eyebrow">IDENTITY</div><h1>Your Learning Profile</h1><p>A snapshot of who you're becoming as a learner.</p></div></div>
+      <section class="profile-hero panel"><div class="profile-avatar">R</div><div><span class="eyebrow">LEARNING LEVEL</span><h2>Intermediate</h2><p>Curious, consistent, and building breadth.</p></div><div class="profile-actions"><button class="primary" id="edit-profile">Edit profile</button></div></section>
+      <div class="profile-stats" id="profile-stats"></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modal-backdrop"><div class="modal" id="modal"></div></div>
+
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box"><div class="search-input"><span>⌕</span><input id="global-search" placeholder="Search your learning..." autofocus><kbd>ESC</kbd></div><div id="search-results"></div></div>
+  </div>
+
+  <div class="notifications-pop" id="notifications-pop"><div class="panel-head"><h2>Notifications</h2><button class="ghost" id="clear-notifications">Clear</button></div><div id="notification-list"></div></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

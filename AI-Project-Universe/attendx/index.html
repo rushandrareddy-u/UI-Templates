@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AttendX — Student Attendance Copilot</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div id="login" class="login">
+ <div class="loginbox">
+  <div class="logo">Attend<span class="gradient">X</span></div>
+  <p class="muted">Attendance Copilot • Analytics • Simulator • Secure roles</p>
+  <label>Username</label><input id="user" class="field" placeholder="student / teacher / admin">
+  <label>Password</label><input id="pass" class="field" type="password" placeholder="Password">
+  <button class="btn primary full" onclick="login()">Sign in</button>
+  <div class="demo"><b>Demo accounts</b><br>Admin: <code>admin</code> / <code>Admin@2026</code><br>Teacher: <code>teacher</code> / <code>Teacher@2026</code><br>Coordinator: <code>coord</code> / <code>Coord@2026</code><br>Student 1: <code>stu01</code> / <code>Attend@2027</code><br>Student 84: <code>stu84</code> / <code>Attend@2110</code><br><br>Student passwords are unique in this demo.</div>
+  <p class="hint">For your real Excel data, use Import Excel after signing in as Admin. The app recalculates each student's attendance from the imported session columns.</p>
+ </div>
+</div>
+
+<div id="app" class="app hidden">
+<aside class="side">
+ <div class="brand">Attend<span style="color:#a5b4fc">X</span></div>
+ <div id="nav" class="nav"></div>
+ <div class="profile"><b id="who"></b><br><span id="role" style="color:#9ca3af"></span><br><button class="btn ghost" style="padding-left:0;color:#cbd5e1" onclick="logout()">Sign out</button></div>
+</aside>
+<main class="main">
+ <div class="top"><div><h1 id="title">Dashboard</h1><div class="muted" id="subtitle"></div></div><div class="actionrow"><button class="btn secondary" onclick="openModal('help')">How it works</button></div></div>
+ <div id="content"></div>
+</main>
+</div>
+<div id="modal" class="modal hidden"><div id="modalbox" class="modalbox"></div></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</body></html>
